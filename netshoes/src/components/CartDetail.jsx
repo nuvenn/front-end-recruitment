@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import If from '../utils/If'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -35,9 +36,17 @@ class CartDetail extends Component {
 
   render() {
     return (
-      <List component="nav" className={this.props.classes.root}>
-        {this.getCartList()}
-      </List>
+      <If test={!this.props.cart.open}>
+        <List component="nav" className={this.props.classes.root}>
+          <If test={this.props.cart.list.length  > 0}>
+            <ListItem button>
+              <ListItemText primary="O carrinho está vazio" />
+            </ListItem>
+            <Divider />
+          </If>
+          {this.getCartList()}
+        </List>
+      </If>
     )
   }
 }

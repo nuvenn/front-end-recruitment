@@ -13,9 +13,10 @@ class App extends Component {
     super(props);
     this.state =  {
       products: [],
-      cart: { list: [] }
+      cart: { list: [], open: true }
     }
     this.addToCart = this.addToCart.bind(this)
+    this.openCartDetail = this.openCartDetail.bind(this)
   }
 
   componentWillMount() {
@@ -36,10 +37,19 @@ class App extends Component {
     }))
   }
 
+  openCartDetail() {
+    this.setState((state, props) => ({
+      cart: {
+        open: !state.cart.open,
+        list: state.cart.list
+      }
+    }))
+  }
+
   render() {
     return (
       <div className="App">
-        <NavBar cart={this.state.cart} />
+        <NavBar cart={this.state.cart} openCartDetail={this.openCartDetail} />
         <CartDetail cart={this.state.cart} />
         <ProductCard products={this.state.products} addToCart={this.addToCart} />
       </div>
