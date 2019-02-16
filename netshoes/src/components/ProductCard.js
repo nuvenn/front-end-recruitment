@@ -48,7 +48,7 @@ function ProductCard(props) {
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button onClick={(e) => addToCart(product)} size="small">Comprar</Button>
+                                    <Button variant="contained" color="primary" onClick={(e) => addToCart(product)} size="small">Comprar</Button>
                                 </CardActions>
                             </Card>
                         </Grid>

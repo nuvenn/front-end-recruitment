@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios'
 import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';
+import CartDetail from '../components/CartDetail';
 
 const baseUrl = 'http://localhost:3001/products'
 
@@ -32,13 +33,14 @@ class App extends Component {
       cart: {
         list: state.cart.list.concat(product)
       }
-    }), () => console.log(this.state.cart))
+    }))
   }
 
   render() {
     return (
       <div className="App">
         <NavBar cart={this.state.cart} />
+        <CartDetail cart={this.state.cart} />
         <ProductCard products={this.state.products} addToCart={this.addToCart} />
       </div>
     )
