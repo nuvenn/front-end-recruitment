@@ -15,11 +15,15 @@ const styles = theme => ({
     card: {
       margin: '50px auto',
       maxWidth: '300px',
+      minWidth: '240px',
       minHeight: '200px',  
       padding: theme.spacing.unit * 2,
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+    content: {
+      minHeight: '120px'
+    }
 });
 
 
@@ -30,9 +34,9 @@ function ProductCard(props) {
             <Grid container spacing={24}>
                 {props.products.map(product => { 
                     return (
-                        <Grid item xs={12} sm={3} key={product.id}>
+                        <Grid item xs={12} sm={4} md={3} key={product.id}>
                             <Card className={classes.card}>
-                                <CardContent>
+                                <CardContent className={classes.content}>
                                     <Typography variant="h5" component="h2">
                                         {product.title}
                                     </Typography>
