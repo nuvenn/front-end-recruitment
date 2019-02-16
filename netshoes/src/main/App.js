@@ -5,32 +5,44 @@ import NavBar from '../components/NavBar';
 import ProductCard from '../components/ProductCard';
 
 const baseUrl = 'http://localhost:3001/products'
-const initialState = {
-  products: []
-}
 
 class App extends Component {
 
-  state = { ...initialState }
+  constructor(props) {
+    super(props);
+    this.state =  {
+      products: [],
+      cart: { list: [] }
+    }
+    this.addToCart = this.addToCart.bind(this)
+  }
 
   componentWillMount() {
     axios['get'](baseUrl)
         .then(response => {
             this.setState({
-              cart: { total: '', list: []},
-              products: response.data
+              products: response.data,
+              cart: { list: [] }
             })
         })
-  } 
+  }
+
+  addToCart(product) {
+    this.setState((state, props) => ({
+      cart: {
+        list: state.cart.list.concat(product)
+      }
+    }), () => console.log(this.state.cart))
+  }
 
   render() {
     return (
       <div className="App">
-        <NavBar />
-        <ProductCard products={this.state.products} />
+        <NavBar cart={this.state.cart} />
+        <ProductCard products={this.state.products} addToCart={this.addToCart} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

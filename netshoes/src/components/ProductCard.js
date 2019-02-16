@@ -23,16 +23,14 @@ const styles = theme => ({
 });
 
 
-function ProductCard(props) {
-    
-    const { classes } = props;
-
+function ProductCard(props) { 
+    const { classes, addToCart } = props
     return (
         <div className={classes.root}>
             <Grid container spacing={24}>
                 {props.products.map(product => { 
                     return (
-                        <Grid item xs={12} sm={3}>
+                        <Grid item xs={12} sm={3} key={product.id}>
                             <Card className={classes.card}>
                                 <CardContent>
                                     <Typography variant="h5" component="h2">
@@ -46,7 +44,7 @@ function ProductCard(props) {
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button size="small">Comprar</Button>
+                                    <Button onClick={(e) => addToCart(product)} size="small">Comprar</Button>
                                 </CardActions>
                             </Card>
                         </Grid>
@@ -61,4 +59,4 @@ function ProductCard(props) {
     classes: PropTypes.object.isRequired,
   };
   
-  export default withStyles(styles)(ProductCard);
+  export default withStyles(styles)(ProductCard)
