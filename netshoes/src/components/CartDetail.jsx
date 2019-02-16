@@ -21,6 +21,11 @@ const styles = theme => ({
 
 class CartDetail extends Component {
 
+  constructor(props) {
+    super(props);
+    this.getValorCompra = this.getValorCompra.bind(this)
+  }
+  
   getCartList() {
     return this.props.cart.list.map(item => {
       return (
@@ -34,17 +39,32 @@ class CartDetail extends Component {
     })
   }
 
+  getValorCompra() {
+    let total = 0
+    this.props.cart.list.map(function(item) { 
+      total = total + item.price
+      return total
+    })
+    return total.toFixed(2)
+  }
+
   render() {
     return (
       <If test={!this.props.cart.open}>
         <List component="nav" className={this.props.classes.root}>
-          <If test={this.props.cart.list.length  > 0}>
+          <If test={this.props.cart.list.length > 0}>
             <ListItem button>
-              <ListItemText primary="O carrinho está vazio" />
+              <ListItemText primary="Seu carrinho está vazio" />
             </ListItem>
             <Divider />
           </If>
           {this.getCartList()}
+          <If test={!this.props.cart.list.length > 0}>
+            <ListItem button>
+              <ListItemText primary={`Total:  ${this.getValorCompra()}$`} />
+            </ListItem>
+            <Divider />
+          </If>
         </List>
       </If>
     )

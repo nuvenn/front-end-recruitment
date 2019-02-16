@@ -18,14 +18,6 @@ const styles = {
 }
 
 class NavBar extends Component {    
-    sumCartTotal(list) {
-        let total = 0
-        list.map((product) => {
-          total = total + product.price
-          return total
-        })
-        return total
-    }
     cartIcon() {
         return (
             <SvgIcon>
