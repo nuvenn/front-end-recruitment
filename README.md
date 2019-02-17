@@ -1,5 +1,19 @@
 # Netshoes Cart Test
 
+To run the project:
+Clone the project - open your terminal or prompt and run the instruction:
+git clone https://github.com/nuvenn/front-end-recruitment.git
+
+Open the terminal or prompt in the folder '/backend' and run the instructions:
+npm install (to install the project dependencies)
+npm start (to run the project)
+
+After it, still in the terminal open another window in the folder '/frontend' and run the instructions:
+npm install (to install the project dependencies)
+npm start (to run the project)
+
+Open your browser in the url 'http://localhost:3000/'
+
 ## Expected result
 
 * See a list of products;
