@@ -33,7 +33,7 @@ class NavBar extends Component {
             <div className={classes.root}>
               <AppBar position="static">
                 <Toolbar>
-                  <Typography variant="title" color="inherit">netshoes</Typography>
+                  <Typography variant="title" color="inherit">{this.props.title}</Typography>
                   <Typography  className={classes.grow}></Typography>
                   <IconButton color="inherit" onClick={() => this.props.openCartDetail()}>
                     <Badge badgeContent={this.props.cart.list.length} color="secondary">

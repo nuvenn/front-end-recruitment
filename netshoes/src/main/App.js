@@ -16,6 +16,7 @@ class App extends Component {
       cart: { list: [], open: true }
     }
     this.addToCart = this.addToCart.bind(this)
+    this.removeFromCart = this.removeFromCart.bind(this)
     this.openCartDetail = this.openCartDetail.bind(this)
   }
 
@@ -37,6 +38,16 @@ class App extends Component {
     }))
   }
 
+  removeFromCart(index) {
+    let list = this.state.cart.list
+    list.splice(index, 1)
+    this.setState((state, props) => ({
+      cart: {
+        list
+      }
+    }))
+  }
+
   openCartDetail() {
     this.setState((state, props) => ({
       cart: {
@@ -49,8 +60,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar cart={this.state.cart} openCartDetail={this.openCartDetail} />
-        <CartDetail cart={this.state.cart} />
+        <NavBar title="shop" cart={this.state.cart} openCartDetail={this.openCartDetail} />
+        <CartDetail cart={this.state.cart} removeFromCart={this.removeFromCart} />
         <ProductCard products={this.state.products} addToCart={this.addToCart} />
       </div>
     )
